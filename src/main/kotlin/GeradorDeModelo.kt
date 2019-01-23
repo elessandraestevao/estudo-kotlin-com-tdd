@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Bool
+
 class GeradorDeModelo {
 
     fun criaModelo(nameClass: String, atributes: String): String {
@@ -15,8 +17,20 @@ class GeradorDeModelo {
             }
         }
         if (nameClass.isEmpty()) {
-            return "class ClassName($atributeModel)"
+            return "Class name invalid!"
         }
-        return "class $nameClass($atributeModel)"
+        var nameClassUpdated = ""
+        if (Character.isLowerCase(nameClass.get(0))) {
+            nameClassUpdated = nameClass.capitalize()
+        }
+        if ((isUpperCase(nameClass))){
+            val nameClassLowerCase = nameClass.toLowerCase()
+            nameClassUpdated = nameClassLowerCase.capitalize()
+        }
+        return "class $nameClassUpdated($atributeModel)"
+    }
+
+    fun isUpperCase(str:String) : Boolean{
+        return str === str.toUpperCase();
     }
 }
