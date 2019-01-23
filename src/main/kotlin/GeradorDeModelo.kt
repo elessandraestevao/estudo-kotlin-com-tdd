@@ -5,7 +5,7 @@ class GeradorDeModelo {
         var atributeModel = ""
         if (atributes.isNotEmpty() && atributes.isNotBlank()) {
             for (atribute in segmentsOfAtributes) {
-                if (atribute.isNotEmpty()) {
+                if (atribute.isNotEmpty() && atribute.isNotBlank()) {
                     if (atributeModel.isEmpty()) {
                         atributeModel = "val $atribute"
                     } else {
