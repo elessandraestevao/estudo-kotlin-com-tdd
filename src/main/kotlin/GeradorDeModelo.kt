@@ -3,9 +3,9 @@ class GeradorDeModelo {
     fun criaModelo(nameClass: String, atributes: String): String {
         val segmentsOfAtributes = atributes.split(" ")
         var atributeModel = ""
-        if (!atributes.isEmpty() && atributes != " ") {
+        if (atributes.isNotEmpty() && atributes.isNotBlank()) {
             for (atribute in segmentsOfAtributes) {
-                if (atribute != "") {
+                if (atribute.isNotEmpty()) {
                     if (atributeModel.isEmpty()) {
                         atributeModel = "val $atribute"
                     } else {
