@@ -32,10 +32,6 @@ class GeradorDeModelo {
         if (Character.isLowerCase(nameClass.get(0))) {
             return nameClass.capitalize()
         }
-        if ((isUpperCase(nameClass))) {
-            val nameClassLowerCase = nameClass.toLowerCase()
-            return nameClassLowerCase.capitalize()
-        }
         return nameClass
     }
 

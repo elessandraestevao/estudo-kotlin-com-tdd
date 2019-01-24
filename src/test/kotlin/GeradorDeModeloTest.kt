@@ -54,6 +54,13 @@ class GeradorDeModeloTest {
     }
 
     @Test
+    fun erroAoTentarCriarModeloComAtributoForaDoPadraoEsperado(){
+        val geradorDeModelo = GeradorDeModelo()
+        val modeloGerado: String = geradorDeModelo.criaModelo("User", "name.String")
+        Assert.assertTrue(modeloGerado.equals("Class name invalid!"))
+    }
+
+    @Test
     fun criaModeloComUmEspacoNoAtributo(){
         val geradorDeModelo = GeradorDeModelo()
         val modeloGerado: String = geradorDeModelo.criaModelo("User", " ")
@@ -99,21 +106,6 @@ class GeradorDeModeloTest {
     fun criaModeloTratandoNomeDaClasseEmMinusculo(){
         val geradorDeModelo = GeradorDeModelo()
         val modeloGerado: String = geradorDeModelo.criaModelo("user", "name:String idade:Int")
-        Assert.assertTrue(modeloGerado.equals("class User(val name:String, val idade:Int)"))
-    }
-
-    @Test
-    fun criaModeloTratandoNomeDaClasseTodoMaiusculo(){
-        val geradorDeModelo = GeradorDeModelo()
-        val modeloGerado: String = geradorDeModelo.criaModelo("USER", "name:String idade:Int")
-        Assert.assertTrue(modeloGerado.equals("class User(val name:String, val idade:Int)"))
-    }
-
-    //@Test
-    fun criaModeloTratandoNomeDaClasseComMaiusculoEMinusculo(){
-        val geradorDeModelo = GeradorDeModelo()
-        val modeloGerado: String = geradorDeModelo.criaModelo("USeR", "name:String idade:Int")
-        println(modeloGerado)
         Assert.assertTrue(modeloGerado.equals("class User(val name:String, val idade:Int)"))
     }
 }
