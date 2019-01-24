@@ -3,9 +3,16 @@ import com.sun.org.apache.xpath.internal.operations.Bool
 class GeradorDeModelo {
 
     fun criaModelo(nameClass: String, atributes: String): String {
-        val segmentsOfAtributes = atributes.split(" ")
-        var atributeModel = ""
+        if (nameClass.isEmpty()) {
+            return "Class name invalid!"
+        }
+        return "class ${treatNameClass(nameClass)}(${treatAtributes(atributes)})"
+    }
+
+    fun treatAtributes(atributes: String): String {
         if (atributes.isNotEmpty() && atributes.isNotBlank()) {
+            var atributeModel = ""
+            val segmentsOfAtributes = atributes.split(" ")
             for (atribute in segmentsOfAtributes) {
                 if (atribute.isNotEmpty() && atribute.isNotBlank()) {
                     if (atributeModel.isEmpty()) {
@@ -15,22 +22,25 @@ class GeradorDeModelo {
                     }
                 }
             }
+            return atributeModel
+        } else {
+            return ""
         }
-        if (nameClass.isEmpty()) {
-            return "Class name invalid!"
-        }
-        var nameClassUpdated = ""
-        if (Character.isLowerCase(nameClass.get(0))) {
-            nameClassUpdated = nameClass.capitalize()
-        }
-        if ((isUpperCase(nameClass))){
-            val nameClassLowerCase = nameClass.toLowerCase()
-            nameClassUpdated = nameClassLowerCase.capitalize()
-        }
-        return "class $nameClassUpdated($atributeModel)"
+
     }
 
-    fun isUpperCase(str:String) : Boolean{
+    fun treatNameClass(nameClass: String): String {
+        if (Character.isLowerCase(nameClass.get(0))) {
+            return nameClass.capitalize()
+        }
+        if ((isUpperCase(nameClass))) {
+            val nameClassLowerCase = nameClass.toLowerCase()
+            return nameClassLowerCase.capitalize()
+        }
+        return nameClass
+    }
+
+    fun isUpperCase(str: String): Boolean {
         return str === str.toUpperCase();
     }
 }
