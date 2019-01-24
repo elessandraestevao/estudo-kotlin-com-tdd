@@ -26,7 +26,6 @@ class GeradorDeModelo {
         } else {
             return ""
         }
-
     }
 
     fun treatNameClass(nameClass: String): String {
